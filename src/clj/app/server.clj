@@ -9,7 +9,7 @@
                         :host "0.0.0.0"
                         })
 
-(def prod-server-config {:port 9001
+(def prod-server-config {:port 5000
                          :host "0.0.0.0"})
 
 
@@ -30,7 +30,7 @@
   [& args]
   (let [[port] args
         p (or port 3000)]
-    (println "Starting server at  " p)
+    (println "Starting server at  " prod-server-config)
     ;(s/init-state)
     (start-server prod-server-config)))
 

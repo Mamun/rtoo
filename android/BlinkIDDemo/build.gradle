@@ -1,0 +1,31 @@
+apply plugin: 'android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.microblink.blinkid"
+        minSdkVersion 10
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+    }
+
+    lintOptions {
+          checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    compile("com.microblink:blinkid:${rootProject.ext.blinkIdVersion}@aar") {
+        transitive = true
+    }
+    compile 'com.google.code.gson:gson:2.8.0'
+    //compile project(':LibResult')
+}

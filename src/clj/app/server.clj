@@ -1,7 +1,8 @@
 (ns app.server
   (:require [immutant.web :as im]
             [clojure.tools.logging :as log]
-            [app.routes :as r])
+            [app.routes :as r]
+            [environ.core :refer [env]])
   (:gen-class))
 
 
@@ -29,10 +30,12 @@
 (defn -main
   [& args]
   (let [[port] args
-        p (or port 3000)]
-    (println "Starting server at  " prod-server-config)
+        p (or port (env :port) 5000)
+        config (assoc prod-server-config :port p)
+        ]
+    (println "Starting server at  " config)
     ;(s/init-state)
-    (start-server prod-server-config)))
+    (start-server config)))
 
 
 (comment
